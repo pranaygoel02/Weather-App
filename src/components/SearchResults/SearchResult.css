@@ -1,0 +1,41 @@
+.search-list{
+    position:absolute;
+    flex: 1;
+    width: 100%;
+    top: 3em;
+    padding: 1em;
+    left: 0;
+    list-style: none;
+    display: none;
+    flex-direction: column;
+    gap: 0.3em;
+    border-radius: 0.8em;
+    box-shadow: 0px 4px 5px rgba(105, 105, 105, 0.259);
+    transition: all 1s ease;
+    background: white;
+    z-index: 1;
+}
+
+.showSearchList{
+    display: flex;
+    transition: all 1s ease;
+}
+
+.search-item{
+    display: flex;
+    width: 100%;
+    flex: 1;
+}
+
+#search-link{
+    flex: 1;
+    width: 100%;
+    text-decoration: none;
+    color: black;
+    transition: all 100ms ease;
+}
+#search-link:hover{
+    background-color: #4d71f550;
+    font-weight: 600;
+    font-size: 1.05em;
+}

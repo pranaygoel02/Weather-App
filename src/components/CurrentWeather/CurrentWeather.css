@@ -1,0 +1,25 @@
+.weather-container{
+    background: linear-gradient(135deg, #3d577e, #0b2969);
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: auto;
+    color: white;
+    
+}
+.weather-container::-webkit-scrollbar{
+    display: none;
+}
+.user-place-detail{
+    width: 1005;
+    gap: 1em;
+    justify-content: space-between;
+
+}
+@media only screen and (min-width: 768px){
+    .weather-container{
+        max-width: 360px;
+    }
+}

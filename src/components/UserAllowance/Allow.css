@@ -1,0 +1,37 @@
+.lottie{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min-content;
+    padding: 100% 6em;
+    position: relative;
+}
+.allow-container{
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+#animation{
+    position: absolute;
+    width: 300%;
+    z-index: 1;
+}
+#allow-btn{
+    position: absolute;
+    z-index: 1;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: 1px solid rgba(245, 245, 245, 0.63);
+    color: whitesmoke;
+    padding: 1em;
+    border-radius: 1em;
+    transform: translateY(-250%);
+    transition: all 1s ease;
+}
+#allow-btn:hover{
+    background: rgb(62, 146, 226);
+    color: white;
+    outline: none;
+    scale: 1.1;
+}

@@ -1,0 +1,14 @@
+.social-links{
+    display:flex;
+    gap: 0.5em;
+    justify-content: space-between;
+    
+}
+.social-links a{
+    font-size: 2em;
+    transition: all 200ms ease;
+}
+.social-links a:hover{
+    transform: translateY(-4px);
+    scale: 1.15;
+}
