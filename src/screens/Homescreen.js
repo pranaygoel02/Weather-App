@@ -11,25 +11,39 @@ import Footer from '../components/Footer/footer'
 
 const Homescreen = () => {
   const [allowed,setAllowed] = useState(false);
-  const [UserCoords,setUserCoords] = useState('');
+  const [UserCoords,setUserCoords] = useState();
   const [geoposition,setGeoposition] = useState()
   const [unit,setUnit] = useState('Metric');
 
 
   
-  const getLocation = useCallback( () => {
+  // const getLocation = useCallback( () => {
+  //   console.log('geolocationg');
+  //   setAllowed(prev=>true);
+  //   const {coords} = Geolocate(); 
+  //   setUserCoords(prev=>coords);
+  // }, []) 
+
+  // console.log(UserCoords);
+
+ 
+
+const setCoords = (coords) => {
+  setUserCoords(prev=>coords)
+}
+
+const getLocation = useCallback(()=>{
     console.log('geolocationg');
-    setAllowed(prev=>true);
+    setAllowed(true)
     const {coords} = Geolocate(); 
-    setUserCoords(prev=>coords);
-  }, []) 
+    // setUserCoords(prev=>coords);
+    setCoords(coords);
+},[])
 
-  console.log(UserCoords);
-
-  useEffect(()=>{
-    if(allowed) getLocation();
-  },[getLocation])
-
+useEffect(()=>{
+  if(allowed) getLocation();
+},[getLocation])
+  
   
 
   return (

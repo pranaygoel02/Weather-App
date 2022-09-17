@@ -7,13 +7,14 @@ const navLinks = {
         component: 'Homescreen',
         route: ''
     },
-    {
-        id: 2,
-        title: 'News',
-        icon: '',
-        component: 'News',
-        route: 'news'
-    }],
+    // {
+    //     id: 2,
+    //     title: 'News',
+    //     icon: '',
+    //     component: 'News',
+    //     route: 'news'
+    // }
+],
     system: [
         {
             id: 1,

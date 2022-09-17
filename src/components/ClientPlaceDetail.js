@@ -17,7 +17,7 @@ const ClientPlaceDetail = ({time,userLocation,coords}) => {
         <p>Lon: {Number(coords.lon).toFixed(2)}</p>
       </div>
       </div>
-      {/* {userLocation && <UserWeather userLocation={userLocation} country={userLocation.Country.EnglishName}/>} */}
+      {userLocation && <UserWeather userLocation={userLocation} country={userLocation.Country.EnglishName}/>}
     </div>
   )
 }

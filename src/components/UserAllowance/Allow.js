@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import Lottie from 'lottie-web'
 import './Allow.css'
 
-const Allow = ({setAllowed,getLocation}) => {
+const Allow = ({getLocation}) => {
 
   const LocationRef = useRef(null);
   useEffect(() => {
