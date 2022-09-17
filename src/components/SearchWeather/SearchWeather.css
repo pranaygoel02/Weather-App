@@ -70,6 +70,7 @@
     align-items: center;
     justify-content: space-evenly;
     position: relative;
+    background: rgba(237, 239, 241, 0.979);
 }
 .weather-icon{
     color: #3a60f0;
@@ -88,6 +89,7 @@
     color: white;
     font-size: 0.9em;
     box-shadow: 1px 1px 5px rgba(161, 161, 161, 0.39);
+    z-index: 1;
 }
 .weather-val{
     font-size: 2em;
@@ -143,5 +145,12 @@
     }
     .weather-detail-head{
         padding: 2em;
+    }
+    .more-detail-link{
+        text-decoration: none;
+        background: linear-gradient(135deg, rgb(62, 86, 124), rgb(16, 40, 103)); 
+        color: white;
+        padding: 0.5em 1em;
+        border-radius: 2em;
     }
 }

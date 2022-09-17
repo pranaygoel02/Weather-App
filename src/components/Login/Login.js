@@ -52,7 +52,11 @@ const Login = () => {
     </div>
     <div className='login'>
       <div id='login-left'>
-      <h1>Login</h1>
+      <div className='brand flex-row'>
+      <img id='brand-icon'/>
+      <h1 id='brand-label'>Currently.in</h1>
+      </div>
+      <h1 className='brand'>Login</h1>
       </div>
       <div id='login-right'>
       <div className='form-wrapper'>

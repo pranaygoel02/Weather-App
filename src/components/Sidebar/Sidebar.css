@@ -1,5 +1,5 @@
 .sidebar-container{
-    background: #eef2f3;
+    background: #000000e8;
     height: 100%;
     overflow: hidden;
     display: flex;
@@ -14,6 +14,7 @@
     text-align: center;
     z-index: 2;
     padding-bottom: 2em;
+    
 }
 #brand{
     width: 100%;

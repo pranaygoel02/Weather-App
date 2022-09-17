@@ -4,9 +4,18 @@
     padding: 1.2em 1.2em 1.2em;
     align-items: center;
     justify-content: center;
-    /* width: 100%; */
+    /* width: 50%; */
     height: 100vh;
     font-family: inherit;
+    margin: auto;
+}
+#brand-label{
+    color: #3a60f0;
+}
+.brand{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .back-btn{
     display: flex;
@@ -47,9 +56,6 @@
     width: 100%;
     gap: 0.2em;
 }
-.form-label{
-
-}
 .form-input{
     padding: 0.7em;
     outline: none;
@@ -78,8 +84,9 @@
 @media only screen and (min-width: 820px) {
     .login{
         padding: 2.8em 11em;
-        flex-direction: row;
+        /* flex-direction: row; */
         background-position: bottom;
+        width: 50%;
     }
     #login-left{
         position: relative;

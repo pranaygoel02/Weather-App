@@ -16,10 +16,10 @@ const CurrentWeather = ({coords}) => {
 
   const getGeoposition = useCallback(async()=>{
     console.log('getting geoposition')
-      await axios.get(url).then(res=>res.data).then(data=>{
+    await axios.get(url).then(res=>res.data).then(data=>{
         console.log(data);
         setUserPos(prev=>data)})
-  },[coords.lat,coords.lon])
+  },[url])
   
   console.log('userPos',userPos);
 
