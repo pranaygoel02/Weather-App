@@ -7,30 +7,31 @@ import NightsStayIcon from '@mui/icons-material/NightsStay';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import LoginIcon from '@mui/icons-material/Login';
 import { useAuth } from '../../Context/AuthContext';
+import { useSidebar } from '../../Context/SidebarContext';
 
 
-const Sidebar = ({sidebarState}) => {
+const Sidebar = () => {
   const sidebarRef = useRef();
   const closeIconRef = useRef();
   // const [user,setUser] = useState(false);
   const navigate = useNavigate();
 
   const { currentUser, logout } = useAuth()
+  const {openSidebar,hideSidebar,sidebarState} = useSidebar()
   console.log('currentUser: ',currentUser);
 
-  const hideSidebar = ()=>{
-    sidebarRef.current.classList.remove('showSidebar');
+  async function removeSidebar(){
+    await hideSidebar();
   }
 
-
   useEffect(()=>{
-    sidebarState && sidebarRef.current.classList.add('showSidebar');
+    sidebarState ? sidebarRef.current.classList.add('showSidebar') : sidebarRef.current.classList.remove('showSidebar');
   },[sidebarState])
 
   return (
         <div ref={sidebarRef} className='sidebar-container'>
           <div ref={closeIconRef} id='close-sidebar'>
-            <CloseIcon fontSize="large" onClick={hideSidebar}/>
+            <CloseIcon fontSize="large" onClick={removeSidebar}/>
           </div>
           <div className='navigation'>
             <div id='brand' className='flex-row padding'>
@@ -43,7 +44,7 @@ const Sidebar = ({sidebarState}) => {
                 <div className='nav-link'>
                   {link.title === 'Weather' ? <NightsStayIcon/>:
                   <NewspaperIcon/>}
-                  <Link onClick={hideSidebar} className='link' to={"/"+link.route}>{link.title}</Link>
+                  <Link onClick={removeSidebar} className='link' to={"/"+link.route}>{link.title}</Link>
                 </div>
                 )
               })}
@@ -61,7 +62,7 @@ const Sidebar = ({sidebarState}) => {
           //   :
             <div className='nav-link'>
                 <LoginIcon/>
-                  <Link onClick={hideSidebar}  className='link' to={"/"+navLinks.login.route}>{navLinks.login.title}</Link>
+                  <Link onClick={removeSidebar}  className='link' to={"/"+navLinks.login.route}>{navLinks.login.title}</Link>
                 </div>
             }
           </div>

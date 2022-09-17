@@ -10,7 +10,6 @@ import Footer from '../components/Footer/footer'
 
 
 const Homescreen = () => {
-  const [sidebar, setSidebar] = useState(false);
   const [allowed,setAllowed] = useState(false);
   const [UserCoords,setUserCoords] = useState('');
   const [geoposition,setGeoposition] = useState()
@@ -30,20 +29,15 @@ const Homescreen = () => {
   useEffect(()=>{
     if(allowed) getLocation();
   },[getLocation])
-  // if(UserCoords !== ''){
-  //   setAllowed(true);
-  // }
 
-  const toggleSidebar = ()=>{
-    setSidebar(prev => !prev);
-  }
+  
 
   return (
     <>
     <div className='app-container'>
-      <Sidebar sidebarState={sidebar}/>
-      <Dashboard openSidebar = {toggleSidebar} />
-      {allowed ? <CurrentWeather coords={UserCoords}/> : <Allow getLocation={getLocation} setAllowed={setAllowed}/>}
+      <Sidebar/>
+      <Dashboard/>
+      {allowed ? <CurrentWeather coords={UserCoords}/> : <Allow getLocation={getLocation}/>}
     </div>
     <Footer/>
     </>

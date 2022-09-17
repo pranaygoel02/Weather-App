@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import UserWeather from './UserWeather/UserWeather'
 const ClientPlaceDetail = ({time,userLocation,coords}) => {
-  // console.log(userLocation);
+  console.log(userLocation);
   return (
     <div className='user-place-detail padding'>
       <div className='flex-row user-place-detail'>
@@ -17,7 +17,7 @@ const ClientPlaceDetail = ({time,userLocation,coords}) => {
         <p>Lon: {Number(coords.lon).toFixed(2)}</p>
       </div>
       </div>
-      {userLocation && <UserWeather userLocation={userLocation} country={userLocation.Country.EnglishName}/>}
+      {/* {userLocation && <UserWeather userLocation={userLocation} country={userLocation.Country.EnglishName}/>} */}
     </div>
   )
 }

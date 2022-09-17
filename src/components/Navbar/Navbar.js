@@ -8,13 +8,15 @@ import { handleSearchInput } from '../SearchResults/SearchResults';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Avatar from '../Avatar'
 import { useAuth } from '../../Context/AuthContext';
+import { useSidebar } from '../../Context/SidebarContext';
 
-const Navbar = ({openSidebar}) => {
+const Navbar = () => {
   const [query,setQuery] = useState('');
   const [value,setValue] = useState('');
   const [show,setShow] = useState(false);
   const [searches, setSearches] = useState([]) 
   const { currentUser } = useAuth()
+  const {openSidebar,sidebarState} = useSidebar()
   
   const SetQuery = (e) => {
     setQuery(e.target.value);

@@ -20,7 +20,6 @@ const Allow = ({setAllowed,getLocation}) => {
         <div className='weather-container padding allow-container'>
           <div className='lottie'>
             <button id='allow-btn' onClick={()=>{
-              setAllowed(true)
               getLocation()
               }}>Allow Location</button>
             <div id='animation' ref={LocationRef}></div>
