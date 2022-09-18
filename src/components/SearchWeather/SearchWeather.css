@@ -46,7 +46,10 @@
 }
 .more-detail-link{
     text-decoration: none;
-    color: #3a60f0;
+    background: linear-gradient(135deg, rgb(62, 86, 124), rgb(16, 40, 103)); 
+    color: #fff;
+    padding: 0.25em 0.5em;
+    border-radius: 2em;
 }
 .weather-detail-list{
     justify-content: space-between;

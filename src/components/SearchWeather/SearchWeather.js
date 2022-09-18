@@ -13,6 +13,7 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 import CloudIcon from '@mui/icons-material/Cloud';
 import OpacityOutlinedIcon from '@mui/icons-material/OpacityOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import Chart from '../Chart/Chart';
 
 export default function SearchWeather ({weatherData,city,state,country}) {
   const [saved,setSaved] = useState(false);
@@ -112,6 +113,15 @@ export default function SearchWeather ({weatherData,city,state,country}) {
               <div className='weather-detail'>
                 <h1 className='weather-val'>{weatherData.RelativeHumidity}%</h1>
               </div>
+              
+            </div>
+          </li>
+          <li>
+            <p className='weather-subhead'>Chart</p>
+            <div className='weather-card flex-row'>
+                <Chart values={weatherData.PrecipitationSummary}/>
+              {/* <div className='weather-detail'>
+              </div> */}
               
             </div>
           </li>

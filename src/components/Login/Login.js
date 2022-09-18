@@ -1,6 +1,7 @@
 import React,{useRef, useState} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import { useAuth } from '../../Context/AuthContext'
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import './Login.css'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Alert from '../Alert';
@@ -9,7 +10,9 @@ import Alert from '../Alert';
 const Login = () => {
   // const [error,setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const {login, currentUser, setAlert} = useAuth()
+  // const {login, currentUser, setAlert} = useAuth()
+  const {setAlert} = useAuth()
+  const auth = getAuth();
   const emailRef = useRef()
   const passwordRef = useRef()
   const navigate = useNavigate()
@@ -21,28 +24,27 @@ const Login = () => {
   const handleChange = (e) => {
     setCredentials({...credentials,[e.target.name]: e.target.value})
   }
-  async function handleSubmit(e){
+  function handleSubmit(e) {
     e.preventDefault();
-    try{
-      setLoading(true)
-      await login(credentials);
-      setAlert({
-        open: true,
-        message:`Welcome ${currentUser.email}`,
-        type: 'success'
+
+    signInWithEmailAndPassword(auth, credentials.email, credentials.password)
+      .then((userCredential) => {
+
+        const user = userCredential.user;
+        console.log(user);
+        setAlert({
+          open: true,
+          message: `Welcome ${user.email}`,
+          type: 'success'
+        })
+        navigate("/")
+
       })
-      navigate("/")
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
     }
-    catch(error){
-     setAlert({
-        open: true,
-        message: `${error}`,
-        type: 'error'
-      })
-    }
-    setLoading(false)
-    
-  }
 
   return (
     <>
@@ -56,9 +58,9 @@ const Login = () => {
       <img id='brand-icon'/>
       <h1 id='brand-label'>Currently.in</h1>
       </div>
-      <h1 className='brand'>Login</h1>
       </div>
       <div id='login-right'>
+      <h1 className='brand'>Login</h1>
       <div className='form-wrapper'>
       <form onSubmit={handleSubmit} className='form'>
         <div className='form-element'>

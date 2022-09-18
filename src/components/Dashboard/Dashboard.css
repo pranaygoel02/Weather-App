@@ -2,4 +2,8 @@
     flex: 1;
     align-items: center;
     justify-content: center;
+    overflow-y: auto;
+}
+.dashboard::-webkit-scrollbar{
+    display: none;
 }

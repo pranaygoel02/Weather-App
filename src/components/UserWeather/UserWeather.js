@@ -14,6 +14,7 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 import CloudIcon from '@mui/icons-material/Cloud';
 import OpacityOutlinedIcon from '@mui/icons-material/OpacityOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import Chart from '../Chart/Chart';
 
 export default function UserWeather ({userLocation,country}) {
   const [saved,setSaved] = useState(false);

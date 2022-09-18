@@ -55,10 +55,10 @@ const SignUp = () => {
     
     <div className='login'>
       <div id='login-left'>
-      <h1>Sign Up</h1>
       </div>
       <div id='login-right'>
       {/* {error && alert(error)} */}
+      <h1>Sign Up</h1>
       <div className='form-wrapper'>
 
       <form onSubmit={handleSubmit} className='form'>
