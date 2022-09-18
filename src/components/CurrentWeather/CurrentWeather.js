@@ -1,32 +1,15 @@
 import React, { useEffect, useState,useCallback } from 'react'
 import ClientPlaceDetail from '../ClientPlaceDetail';
+import UserWeather from '../UserWeather/UserWeather';
 import axios from 'axios';
 import './CurrentWeather.css';
+import { useGeolocation } from '../../Context/GeolocationContext';
 
-const CurrentWeather = ({coords}) => {
+const CurrentWeather = () => {
+  const {userPos,coords,getUserLocation} = useGeolocation()
   const [dateObj,setDateObj] = useState(new Date());
   const [time, setTime] = useState(dateObj.toLocaleTimeString());
-  const [userPos,setUserPos] = useState()
-  const apikey = 'XMUYtoZGyj4nn6oqiFvdadAtS8hKS9b6'
-  console.log('coords1',coords,coords.lat,coords.lon);
-  console.log('coordslat',coords.lat);
-  console.log('coordslon',coords.lon);
-  const url =`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${apikey}&details=true&q=${coords.lat},${coords.lon}`
-  console.log('url',url);
-
-  const getGeoposition = useCallback(async()=>{
-    console.log('getting geoposition')
-    await axios.get(url).then(res=>res.data).then(data=>{
-        console.log(data);
-        setUserPos(prev=>data)})
-  },[url])
-  
-  console.log('userPos',userPos);
-
-  useEffect(()=>{
-    getGeoposition()
-  },[getGeoposition])
-  
+ 
   setInterval(() => {
     setDateObj(prev => new Date());
   }, 1000);
@@ -35,10 +18,14 @@ const CurrentWeather = ({coords}) => {
     setTime(prev => dateObj.toLocaleTimeString());
    },[dateObj]);
 
+   useEffect(()=>{
+    getUserLocation()
+   },[coords])
+
   return (
     <div className='weather-container'>
       <div>
-        {userPos && <ClientPlaceDetail time={time} coords={coords} userLocation={userPos}/>}
+        {userPos && <UserWeather time={time}/>}
       </div>
     </div>
   )

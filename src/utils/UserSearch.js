@@ -1,7 +1,8 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios'
+
 export default function UserSearch(value){
-    const [cities,setCities] = useState([])
+    const [cities,setCities] = useState([])    
     const apikey = 'XMUYtoZGyj4nn6oqiFvdadAtS8hKS9b6';
     const url = `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${apikey}&q=${value}`
     useEffect(()=>{

@@ -14,6 +14,7 @@ import Logout from '@mui/icons-material/Logout';
 import { useAuth } from '../Context/AuthContext';
 import { Navigate, useNavigate } from 'react-router-dom';
 
+
 export default function AccountMenu() {
     const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -24,20 +25,20 @@ export default function AccountMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const {currentUser,logout} = useAuth();
+  const {currentUser,setPhotoUrl,photoUrl,logout} = useAuth();
 
   async function handleLogout(){
     try{
         console.log('logging out');
       await logout();
-      navigate('/')
+      setPhotoUrl(prev=>'')
     }
     catch{
       alert('error logging out')
     }
     
   }
-
+  console.log('photo: ',currentUser);
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -50,7 +51,7 @@ export default function AccountMenu() {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }}></Avatar>
+            <Avatar src={`${photoUrl}`} alt={currentUser.displayName || currentUser.email} sx={{ width: 40, height: 40 }}></Avatar>
           </IconButton>
         </Tooltip>
       </Box>

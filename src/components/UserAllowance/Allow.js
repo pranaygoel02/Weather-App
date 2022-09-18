@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from 'react'
 import Lottie from 'lottie-web'
 import './Allow.css'
+import { useGeolocation } from '../../Context/GeolocationContext'
 
-const Allow = ({getLocation}) => {
-
+const Allow = () => {
+  const {Geolocate,setAllowed} = useGeolocation()
   const LocationRef = useRef(null);
   useEffect(() => {
     const instance = Lottie.loadAnimation({
@@ -20,7 +21,7 @@ const Allow = ({getLocation}) => {
         <div className='weather-container padding allow-container'>
           <div className='lottie'>
             <button id='allow-btn' onClick={()=>{
-              getLocation()
+              Geolocate()
               }}>Allow Location</button>
             <div id='animation' ref={LocationRef}></div>
           </div>

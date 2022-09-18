@@ -19,6 +19,8 @@ export function AuthProvider ({children}){
         message: '',
         type: 'sucesss'
     })
+    const [savedLocations,setSavedLocations] = useState([])
+    const [photoUrl,setPhotoUrl] = useState('')
 
     async function logout () {
         await auth.signOut()
@@ -74,7 +76,9 @@ export function AuthProvider ({children}){
         login,
         logout,
         alert,
-        setAlert
+        setAlert,
+        setPhotoUrl,
+        photoUrl
     }
 
     return(

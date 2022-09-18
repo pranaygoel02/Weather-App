@@ -1,17 +1,18 @@
 import React,{useRef, useState} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import { useAuth } from '../../Context/AuthContext'
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import './Login.css'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Alert from '../Alert';
+import GoogleButton from 'react-google-button'
 
 
 const Login = () => {
   // const [error,setError] = useState('');
   const [loading, setLoading] = useState(false);
   // const {login, currentUser, setAlert} = useAuth()
-  const {setAlert} = useAuth()
+  const {setAlert,setPhotoUrl} = useAuth()
   const auth = getAuth();
   const emailRef = useRef()
   const passwordRef = useRef()
@@ -20,7 +21,25 @@ const Login = () => {
     email: '',
     password: ''
   })
+  const googleProvider = new GoogleAuthProvider()
 
+  function signInWithGoogle(){
+    signInWithPopup(auth,googleProvider).then(res=>{
+      setAlert({
+        open:true,
+        message: `Welcome ${res.user.email}`,
+        type: 'success'
+      })
+      setPhotoUrl(prev=>`${res.user.photoURL}`)
+      navigate(-1)
+    }).catch(error=>{
+      setAlert({
+        open: true,
+        message:'Something went wrong!',
+        type:'error'
+      })
+    })
+  }
   const handleChange = (e) => {
     setCredentials({...credentials,[e.target.name]: e.target.value})
   }
@@ -37,7 +56,7 @@ const Login = () => {
           message: `Welcome ${user.email}`,
           type: 'success'
         })
-        navigate("/")
+        navigate(-1)
 
       })
       .catch((error) => {
@@ -73,6 +92,8 @@ const Login = () => {
         </div>
         <button className='form-btn' disabled={loading} type='submit'>LOGIN</button>
       </form>
+      <p>OR</p>
+      <GoogleButton style={{'width': '100%','outline': 'none'}} onClick={signInWithGoogle}/>
       </div>
       <p>Don't have an account? <Link to={"/signup"}>Sign Up</Link> here.</p>
     </div>

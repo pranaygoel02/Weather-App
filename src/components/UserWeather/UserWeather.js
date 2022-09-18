@@ -14,31 +14,23 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 import CloudIcon from '@mui/icons-material/Cloud';
 import OpacityOutlinedIcon from '@mui/icons-material/OpacityOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import { useGeolocation } from '../../Context/GeolocationContext';
 import Chart from '../Chart/Chart';
 
-export default function UserWeather ({userLocation,country}) {
+export default function UserWeather ({time}) {
+  const {coords,userPos,url2,weatherData,getUserWeather} = useGeolocation()
   const [saved,setSaved] = useState(false);
-  const [weatherData,setUserWeatherData] = useState()
+  
+  useEffect(()=>{
+    getUserWeather()
+  },[url2])
+  
+  
 
-  const apikey = 'XMUYtoZGyj4nn6oqiFvdadAtS8hKS9b6';
-  const url = `http://dataservice.accuweather.com/currentconditions/v1/`
-  const query = `?details=true&apikey=${apikey}`
-
-  const flagUrl = "https://countryflagsapi.com/svg/" + country.toLowerCase().split(' ').join('%20');
+  const flagUrl = "https://countryflagsapi.com/svg/" + userPos.Country.EnglishName.toLowerCase().split(' ').join('%20');
   console.log(flagUrl);
   
-  const getWeatherData = useCallback(async () => {
-    await axios.get(`${url}${userLocation.Key}${query}`).then(res=>res.data).then(data => {
-        setUserWeatherData(data[0])
-        console.log(weatherData);
-        console.log('data[0]',data[0]);
-    })
-  },[weatherData]);
-
-  useEffect(()=>{
-      if(userLocation) getWeatherData();
-    },[getWeatherData])
-
+ 
 console.log(weatherData);
 
   const BookMark = () => {
@@ -49,6 +41,18 @@ console.log(weatherData);
     <>
     {weatherData && 
     <div className='search-weather'>
+      <div className='flex-row user-place-detail'>
+      {userPos.EnglishName && 
+      <div>
+        <h2>{userPos.LocalizedName}</h2>
+        <p>{userPos.AdministrativeArea.EnglishName}, {userPos.Country.EnglishName}</p>
+      </div>}
+      <div>
+        <p>{time}</p>
+        <p>Lat: {Number(coords.lat).toFixed(2)}</p>
+        <p>Lon: {Number(coords.lon).toFixed(2)}</p>
+      </div>
+      </div>
     <div className='weather-detail-head flex-row' >
       <div className='place-weather-detail'>
         <h1 id='temp'>{weatherData.Temperature.Metric.Value}°{weatherData.Temperature.Metric.Unit}</h1>

@@ -14,9 +14,11 @@ import CloudIcon from '@mui/icons-material/Cloud';
 import OpacityOutlinedIcon from '@mui/icons-material/OpacityOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Chart from '../Chart/Chart';
+import { useAuth } from '../../Context/AuthContext';
 
 export default function SearchWeather ({weatherData,city,state,country}) {
   const [saved,setSaved] = useState(false);
+  const {currentUser} = useAuth()
   const flagUrl = "https://countryflagsapi.com/svg/" + country.toLowerCase().split(' ').join('%20');
   console.log(flagUrl);
   const BookMark = () => {
@@ -40,9 +42,9 @@ export default function SearchWeather ({weatherData,city,state,country}) {
           <p className='subtitle subtitle2'>{weatherData.RealFeelTemperatureShade.Metric.Phrase}</p>
           </div>
         </div>
-        <div className='bookmark'>
+        {currentUser &&  <div className='bookmark'>
           {saved ? <BookmarkIcon sx={{'fontSize':25}} onClick={BookMark}/> : <BookmarkAddOutlinedIcon sx={{'fontSize':25}} onClick={BookMark}/>}
-          </div>
+          </div>}
       </div>
       <div>
         <div className='flex-row condition-head'>

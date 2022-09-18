@@ -156,4 +156,11 @@
         padding: 0.5em 1em;
         border-radius: 2em;
     }
+    .search-weather{
+        overflow-y: scroll;
+    }
+    .search-weather::-webkit-scrollbar{
+        display: none;
+    }
+
 }

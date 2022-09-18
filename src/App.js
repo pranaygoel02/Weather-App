@@ -11,9 +11,13 @@ import CurrentConditions from './utils/CurrentConditions';
 import { AuthProvider } from './Context/AuthContext';
 import { SidebarProvider } from './Context/SidebarContext';
 import Alert from './components/Alert'
+import { GeolocationProvider } from './Context/GeolocationContext';
+import { DatabaseProvider } from './Context/DatabaseContext';
 const App = () => {
   return (
     <AuthProvider>
+      <DatabaseProvider>
+      <GeolocationProvider>
       <SidebarProvider>
     <Routes>
       <Route path="/" element={<Homescreen/>}>
@@ -26,6 +30,8 @@ const App = () => {
     </Routes>
     <Alert/>
     </SidebarProvider>
+    </GeolocationProvider>
+    </DatabaseProvider>
     </AuthProvider>
   )
 }
