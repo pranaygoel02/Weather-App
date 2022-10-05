@@ -17,6 +17,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function AccountMenu() {
     const navigate = useNavigate();
+    const {setUid} = useAuth();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -32,6 +33,7 @@ export default function AccountMenu() {
         console.log('logging out');
       await logout();
       setPhotoUrl(prev=>'')
+      setUid(prev=>null)
     }
     catch{
       alert('error logging out')

@@ -4,11 +4,13 @@ import{collection,getDocs} from 'firebase/firestore'
 import {useAuth} from '../Context/AuthContext'
 import {useDatabase} from '../Context/DatabaseContext'
 import {Link} from 'react-router-dom'
+import {useSidebar} from '../Context/SidebarContext'
 
 function SavedLocations() {
   const [savedlocations,setSavedlocations] = useState([])
   const {currentUser} = useAuth()
   const {savedLocations} = useDatabase()
+  const {hideSidebar} = useSidebar()
   const [fetched,setFetched] = useState(false)
 
   const getAllSavedLocations = useCallback(async () => {
@@ -34,10 +36,14 @@ function SavedLocations() {
     getAllSavedLocations();
   },[getAllSavedLocations,savedLocations])
 
+  async function removeSidebar(){
+    await hideSidebar();
+  }
+
   return (
     
     <ul className='savedlocations-list' style={{display: 'flex',marginTop:'1em' ,flexDirection:'row', flexWrap: 'wrap', width:'fit-content',gap:'0.5em', maxHeight:'60vh',overflowY:'scroll'}}>
-    {savedlocations && savedlocations.map(location=><Link style={{width:'fit-content',}} className='more-detail-link' to={location.url}>{location.cityName}</Link>)}
+    {savedlocations && savedlocations.map(location=><Link onClick={removeSidebar} style={{width:'fit-content',}} className='more-detail-link' to={location.url}>{location.cityName}</Link>)}
     </ul>
     
   )

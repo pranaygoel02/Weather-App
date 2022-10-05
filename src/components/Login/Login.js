@@ -12,7 +12,7 @@ const Login = () => {
   // const [error,setError] = useState('');
   const [loading, setLoading] = useState(false);
   // const {login, currentUser, setAlert} = useAuth()
-  const {setAlert,setPhotoUrl} = useAuth()
+  const {setAlert,setPhotoUrl,uid,setUid} = useAuth()
   const auth = getAuth();
   const emailRef = useRef()
   const passwordRef = useRef()
@@ -31,6 +31,7 @@ const Login = () => {
         type: 'success'
       })
       setPhotoUrl(prev=>`${res.user.photoURL}`)
+      setUid(prev=>res.user.uid)
       navigate(-1)
     }).catch(error=>{
       setAlert({
@@ -56,6 +57,8 @@ const Login = () => {
           message: `Welcome ${user.email}`,
           type: 'success'
         })
+        console.log('ID: ',user.uid);
+        setUid(prev=>user.uid)
         navigate(-1)
 
       })

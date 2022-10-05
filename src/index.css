@@ -25,6 +25,9 @@ background-repeat: no-repeat;
 .savedlocations-list::-webkit-scrollbar{
     display: none;
 }
+.savedlocations-list{
+    align-items: center;
+}
 @media only screen and (min-width: 768px) {
     html{
         overflow: hidden;

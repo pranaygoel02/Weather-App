@@ -21,7 +21,7 @@ import { useDatabase } from '../../Context/DatabaseContext';
 
 export default function SearchWeather ({weatherData,city,state,country}) {
   const [saved,setSaved] = useState(false);
-  const {currentUser,setAlert} = useAuth()
+  const {currentUser,setAlert,uid} = useAuth()
   const {addLocation,removeLocation, savedLocations, setSavedLocations} = useDatabase()
   const flagUrl = "https://countryflagsapi.com/svg/" + country.toLowerCase().split(' ').join('%20');
 
@@ -51,7 +51,8 @@ export default function SearchWeather ({weatherData,city,state,country}) {
   
   const getSavedLocations = useCallback( async() => {
     console.table(city)
-    const docRef = doc(db, `${currentUser.id}`,city);
+    // const docRef = doc(db, `${currentUser?.uid}`,city);
+    const docRef = doc(db, `${uid}`,city);
     const docSnap = await getDoc(docRef);
     
     if (docSnap.exists()) {

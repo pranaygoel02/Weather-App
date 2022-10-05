@@ -21,6 +21,7 @@ export function AuthProvider ({children}){
     })
     
     const [photoUrl,setPhotoUrl] = useState('')
+    const [uid,setUid] = useState(null)
 
     async function logout () {
         await auth.signOut()
@@ -78,7 +79,8 @@ export function AuthProvider ({children}){
         alert,
         setAlert,
         setPhotoUrl,
-        photoUrl
+        photoUrl,
+        uid,setUid
     }
 
     return(
