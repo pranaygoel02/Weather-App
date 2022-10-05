@@ -1,50 +1,77 @@
 import React,{useContext,useState} from 'react'
 import { db } from '../firebase'
 import { useAuth } from './AuthContext'
-import {doc,setDoc} from '@firebase/firestore'
+import {doc,setDoc, deleteDoc} from 'firebase/firestore'
 
 const DatabaseContext = React.createContext()
 
 export function DatabaseProvider({children}){
-    const {currentUser,savedLocations,setAlert} = useAuth()
+    const {currentUser,setAlert} = useAuth()
     const [locationKey,setLocationKey] = useState()
     const [locationName,setLocationName] = useState()
-
-    const addLocation = async ()=>{
-        const LocationRef = doc(db,"savedLocations",currentUser.uid)
-        try{
-            console.log('saving location');
-            await setDoc(LocationRef,
-                {
-                    Locations: savedLocations? [...savedLocations,{key: locationKey,name: locationName}] : [{key: locationKey,name: locationName}]
-                });
-                setAlert({
-                    open:true,
-                    message:'Location added to your collection.',
-                    type:'success'
-                })
-        }catch(error){
+    const [url, setUrl] = useState('')
+    console.log(locationKey,locationName,url);
+    const [savedLocations,setSavedLocations] = useState([])
+   
+    async function addLocation (){
+        console.log('adding');
+        try {
+            console.log('saved locs: ', savedLocations);
+            const docRef = await setDoc(doc(db, `${currentUser.uid}`,locationName), {
+                cityName: locationName,
+              cityId: locationKey,
+              url: url
+            },{
+                merge: true
+            });
+            // console.log("Document written with ID: ", docRef.id);
+            setAlert({
+                open:'true',
+                message:`${locationName} addded to your collection.`,
+                type:'success'
+            })
+          } catch (e) {
+            console.error("Error adding document: ", e.message);
             setAlert({
                 open: 'true',
-                message:'Could not add location to collection.',
+                message:`Could not add ${locationName} to your collection.`,
                 type:'error'
             })
-        }
+          }
     }
-    function removeLocation(){
-
+    async function removeLocation(){
+        try {
+            const docRef = await deleteDoc(doc(db, `${currentUser.uid}`,locationName))
+            // console.log("Document written with ID: ", docRef.id);
+            setAlert({
+                open:'true',
+                message:`${locationName} removed from your collection.`,
+                type:'success'
+            })
+          } catch (e) {
+            console.error("Error adding document: ", e.message);
+            setAlert({
+                open: 'true',
+                message:`Could not remove ${locationName} from collection.`,
+                type:'error'
+            })
+          }
     }
 
-    const values = {
+    const value = {
         addLocation,
         removeLocation,
         setLocationKey,
         setLocationName,
         locationName,
-        locationKey
+        locationKey,
+        url,
+        setUrl,
+        savedLocations,
+        setSavedLocations,
     }
     return(
-        <DatabaseContext.Provider value={values}>
+        <DatabaseContext.Provider value={value}>
             {children}
         </DatabaseContext.Provider>
     )

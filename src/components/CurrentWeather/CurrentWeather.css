@@ -7,7 +7,7 @@
     overflow-x: hidden;
     width: auto;
     color: white;
-    
+    padding: 0.5em 1em;
 }
 .weather-container::-webkit-scrollbar{
     display: none;

@@ -18,7 +18,7 @@ const WeatherForecast = () => {
   // }, [])
 
   return (
-    <div className='weather flex-row'>
+    <div className='weather flex-row padding'>
       <h1 id='title'>Check <Typewriter
   options={{
     strings: ['live weather '],

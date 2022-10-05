@@ -6,6 +6,7 @@ import CurrentWeather from '../components/CurrentWeather/CurrentWeather'
 import { useGeolocation } from '../Context/GeolocationContext'
 import Allow from '../components/UserAllowance/Allow'
 
+
 const Homescreen = () => {
 	const {allowed,userPos} = useGeolocation()
 	return (
@@ -15,6 +16,7 @@ const Homescreen = () => {
 			<Dashboard/>
 			{allowed ? <CurrentWeather/> : <Allow/>}
 		</div>
+			
 		</>
 	)
 }

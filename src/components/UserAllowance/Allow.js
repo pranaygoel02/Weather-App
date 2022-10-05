@@ -20,9 +20,9 @@ const Allow = () => {
     return (
         <div className='weather-container padding allow-container'>
           <div className='lottie'>
-            <button id='allow-btn' onClick={()=>{
-              Geolocate()
-              }}>Allow Location</button>
+            <button id='allow-btn' onClick={
+              Geolocate
+              }>Allow Location</button>
             <div id='animation' ref={LocationRef}></div>
           </div>
         </div>

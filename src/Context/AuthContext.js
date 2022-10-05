@@ -19,7 +19,7 @@ export function AuthProvider ({children}){
         message: '',
         type: 'sucesss'
     })
-    const [savedLocations,setSavedLocations] = useState([])
+    
     const [photoUrl,setPhotoUrl] = useState('')
 
     async function logout () {

@@ -1,4 +1,4 @@
-import React,{useRef, useEffect, useState} from 'react'
+import React,{useRef, useEffect, useState, useCallback} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import './Sidebar.css'
 import {navLinks} from '../../utils/navlinks'
@@ -10,28 +10,26 @@ import { useAuth } from '../../Context/AuthContext';
 import TryIcon from '@mui/icons-material/Try';
 import { useSidebar } from '../../Context/SidebarContext';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Footer from '../Footer/footer'
+import { useDatabase } from '../../Context/DatabaseContext';
+import SavedLocations from '../SavedLocations';
+import { collection, getDocs, doc } from 'firebase/firestore'
+import {auth,db} from '../../firebase'
 
 
 const Sidebar = () => {
   const sidebarRef = useRef();
   const closeIconRef = useRef();
   const savedLocationsRef = useRef();
-  const locationsRef = useRef();
   const expandIconRef = useRef();
-  // const [user,setUser] = useState(false);
-  const navigate = useNavigate();
 
-  const { currentUser, logout } = useAuth()
+  const { currentUser, logout, setAlert } = useAuth()
   const {openSidebar,hideSidebar,sidebarState} = useSidebar()
+  const { setSavedLocations,savedLocations,getAllSavedLocations} = useDatabase()
   console.log('currentUser: ',currentUser);
 
   async function removeSidebar(){
     await hideSidebar();
-  }
-
-  const expand = () => {
-    expandIconRef.current.classList.toggle("expand");
-    locationsRef.current.classList.toggle("show-locations")
   }
 
   useEffect(()=>{
@@ -61,15 +59,12 @@ const Sidebar = () => {
               {currentUser && <div>
               <div className='nav-link'>
               <TryIcon/>
-              <div className='flex-row' ref={savedLocationsRef} onClick={expand}>
               <p className='link'>Saved Locations</p>
-              <ExpandMoreIcon ref={expandIconRef} className='link'/>
               </div>
-              </div>
-              <ul className='saved-locations' ref={locationsRef}>
-              <li><Link onClick={removeSidebar} className='link' to={"/"}>Paris</Link></li>
-              <li><Link onClick={removeSidebar} className='link' to={"/"}>Paris</Link></li>
-              </ul>
+             
+              
+              <SavedLocations/>
+              
               </div>}
             </div>
           </div>
@@ -81,6 +76,7 @@ const Sidebar = () => {
                 </div>
             }
           </div>
+          <Footer/>
         </div>
   )
 }

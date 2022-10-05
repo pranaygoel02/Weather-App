@@ -23,10 +23,11 @@ const App = () => {
       <Route path="/" element={<Homescreen/>}>
         <Route exact index element={<WeatherForecast/>}/>
         <Route path='/:id/:city/:state/:country' element={<CurrentConditions/>}/>
-        <Route path="news" element={<News/>}/>
+        {/* <Route path="news" element={<News/>}/> */}
       </Route>
       <Route path="/login" element={<Login/>}/>
       <Route path="/signup" element={<SignUp/>}/>
+      <Route path='*' element={<News/>}/>
     </Routes>
     <Alert/>
     </SidebarProvider>

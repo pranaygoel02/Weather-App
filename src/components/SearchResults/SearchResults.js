@@ -6,7 +6,7 @@ import './SearchResult.css'
 const SearchResults = ({cities,value,show}) => {  
   const searchlistRef = useRef(); 
   const [loading,setLoading] = useState(true);
-  console.log(show);
+  // console.log(show);
   useEffect(()=>{
     if(cities.length >= 0 && show) {searchlistRef.current.classList.add('showSearchList');}
   },[cities])

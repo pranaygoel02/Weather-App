@@ -50,15 +50,15 @@ const SignUp = () => {
     <>
     <div className='back-btn' onClick={()=>navigate(-1)}>
     <ArrowBackIcon color='primary' />
-    <p className='link'>Back</p>
+    <p aria-disabled={true} style={{color: 'white'}} className='link'>Back</p>
     </div>
     
     <div className='login'>
       <div id='login-left'>
       </div>
-      <div id='login-right'>
+      <div  id='login-right'>
       {/* {error && alert(error)} */}
-      <h1>Sign Up</h1>
+      <h1  style={{marginBottom: '0.5em'}}>Sign Up</h1>
       <div className='form-wrapper'>
 
       <form onSubmit={handleSubmit} className='form'>
@@ -74,7 +74,7 @@ const SignUp = () => {
           <label className='form-label' htmlFor='confirm-password'>Confirm Password</label>
           <input className='form-input' name='confirm-password' type={'password'} ref={confirmPasswordRef}></input>
         </div>
-        <button className='form-btn' disabled={loading} type='submit'>Sign Up</button>
+        <button className='form-btn' disabled={loading} type='submit'>SIGN UP</button>
       </form>
       </div>
       <p>Have an account? <Link to={"/login"}>Login</Link> instead.</p>

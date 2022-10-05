@@ -56,7 +56,7 @@ const Navbar = () => {
   },[dateObj])
 
   return (
-      <div className='navbar'>
+      <div className='navbar padding'>
         <div className='date'>
           <h1>{month} {year}</h1>
           <p>{day}, {shortMonth} {date}, {year}</p>

@@ -9,7 +9,7 @@ export function GeolocationProvider({children}){
     const [userPos,setUserPos] = useState()
     const [weatherData,setUserWeatherData] = useState()
 
-    const apikey = 'XMUYtoZGyj4nn6oqiFvdadAtS8hKS9b6'
+    const apikey = 'X98EcF7UujbdW84G0WkmhQJ4FANx2sTh'
     const url1 =`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${apikey}&details=true&q=${coords.lat},${coords.lon}`
     console.log('url',url1);
     const url2 = `http://dataservice.accuweather.com/currentconditions/v1/`

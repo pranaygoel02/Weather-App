@@ -69,13 +69,13 @@ const Login = () => {
     <>
     <div className='back-btn' onClick={()=>navigate(-1)}>
     <ArrowBackIcon color='primary' />
-    <p className='link'>Back</p>
+    <p style={{color: 'white'}} className='link'>Back</p>
     </div>
     <div className='login'>
       <div id='login-left'>
       <div className='brand flex-row'>
       <img id='brand-icon'/>
-      <h1 id='brand-label'>Currently.in</h1>
+      {/* <h1 id='brand-label'>Currently.in</h1> */}
       </div>
       </div>
       <div id='login-right'>

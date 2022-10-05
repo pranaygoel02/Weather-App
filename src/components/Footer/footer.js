@@ -14,10 +14,10 @@ export default function footer() {
         <Socials/>
         <p>&copy; Pranay Goel, 2022</p>
         </div>
-        <div className='footer-links'>
+        {/* <div className='footer-links'>
             <p><Link className='footer-link' to="/">Home</Link></p>
             <p><Link className='footer-link' to="/news">News</Link></p>
-        </div>
+        </div> */}
     </div>
   )
 }

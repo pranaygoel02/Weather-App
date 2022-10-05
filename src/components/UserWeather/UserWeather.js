@@ -28,10 +28,10 @@ export default function UserWeather ({time}) {
   
 
   const flagUrl = "https://countryflagsapi.com/svg/" + userPos.Country.EnglishName.toLowerCase().split(' ').join('%20');
-  console.log(flagUrl);
+  // console.log(flagUrl);
   
  
-console.log(weatherData);
+// console.log(weatherData);
 
   const BookMark = () => {
     setSaved(prev => !prev);

@@ -13,6 +13,7 @@
     justify-content: flex-start;
     flex-direction: column;
     color: whitesmoke;
+    height: 100%;
 }
 html{
     height: auto;
@@ -20,7 +21,9 @@ html{
     background-image: url('./images/pexels-pixabay-417122.jpg');
 background-size: cover;
 background-repeat: no-repeat;
-
+}
+.savedlocations-list::-webkit-scrollbar{
+    display: none;
 }
 @media only screen and (min-width: 768px) {
     html{

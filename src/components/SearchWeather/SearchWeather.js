@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect, useCallback} from 'react'
 import { Link } from 'react-router-dom'
 import AirIcon from '@mui/icons-material/Air';
 import WaterIcon from '@mui/icons-material/Water';
@@ -15,17 +15,63 @@ import OpacityOutlinedIcon from '@mui/icons-material/OpacityOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Chart from '../Chart/Chart';
 import { useAuth } from '../../Context/AuthContext';
+import {auth, db} from '../../firebase'
+import { setDoc,doc, getDoc } from 'firebase/firestore';
+import { useDatabase } from '../../Context/DatabaseContext';
 
 export default function SearchWeather ({weatherData,city,state,country}) {
   const [saved,setSaved] = useState(false);
-  const {currentUser} = useAuth()
+  const {currentUser,setAlert} = useAuth()
+  const {addLocation,removeLocation, savedLocations, setSavedLocations} = useDatabase()
   const flagUrl = "https://countryflagsapi.com/svg/" + country.toLowerCase().split(' ').join('%20');
-  console.log(flagUrl);
-  const BookMark = () => {
-    setSaved(prev => !prev);
+
+  const AddLocation = async () => {
+    console.log('adding');
+    try{
+      addLocation();
+    }
+    catch(err){
+      console.log(err);
+    }
+    setSaved(prev=>true)
+    setSavedLocations(prev=>!prev)
   }
+
+  const RemoveLocation = async () => {
+    console.log('removing');
+    try{
+      removeLocation();
+    }
+    catch(err){
+      console.log(err);
+    }
+    setSaved(prev=>false)
+    setSavedLocations(prev=>!prev)
+  }
+  
+  const getSavedLocations = useCallback( async() => {
+    console.table(city)
+    const docRef = doc(db, `${currentUser.id}`,city);
+    const docSnap = await getDoc(docRef);
+    
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+      setSaved(prev=>true)
+      // setSavedLocations(docSnap.data())
+    } else {
+      // doc.data() will be undefined in this case
+      setSaved(prev=>false)
+      console.log("No such document!");
+    }
+},[city])
+  
+useEffect(()=>{
+    getSavedLocations()
+  },[getSavedLocations])
+
+  
   return (
-    <div className='search-weather'>
+    <div className='search-weather padding'>
       <div className='weather-detail-head flex-row' style={{'backgroundImage':`linear-gradient(180deg, rgba(1, 1, 1,0.2),rgba(1, 1, 1,0.8)),url(${flagUrl})`,'backgroundRepeat':'no-repeat','backgroundPosition':'center','backgroundSize':'cover'}}>
         <div className='place-detail'>
           <h1 id='city-name'>{city} 
@@ -43,7 +89,7 @@ export default function SearchWeather ({weatherData,city,state,country}) {
           </div>
         </div>
         {currentUser &&  <div className='bookmark'>
-          {saved ? <BookmarkIcon sx={{'fontSize':25}} onClick={BookMark}/> : <BookmarkAddOutlinedIcon sx={{'fontSize':25}} onClick={BookMark}/>}
+          {saved ? <BookmarkIcon sx={{'fontSize':25}} onClick={RemoveLocation}/> : <BookmarkAddOutlinedIcon sx={{'fontSize':25}} onClick={AddLocation}/>}
           </div>}
       </div>
       <div>
@@ -119,7 +165,7 @@ export default function SearchWeather ({weatherData,city,state,country}) {
             </div>
           </li>
           <li>
-            <p className='weather-subhead'>Chart</p>
+            <p className='weather-subhead'>Precipitation Summary</p>
             <div className='weather-card flex-row'>
                 <Chart values={weatherData.PrecipitationSummary}/>
               {/* <div className='weather-detail'>
