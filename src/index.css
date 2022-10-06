@@ -27,10 +27,29 @@ background-repeat: no-repeat;
 }
 .savedlocations-list{
     align-items: center;
+    justify-content: center;
+    max-width: 90%;
+    margin: auto;
+}
+.hideOnPhone{
+    width: 100%;
+    margin-top: 0.5em;
+    display: none;
+    flex-direction: column;
+    gap:0.5em;
+    align-items: center;
+    justify-content: center;
 }
 @media only screen and (min-width: 768px) {
     html{
         overflow: hidden;
+    }
+    .hideOnPhone{
+        display: flex;
+    }
+    .savedlocations-list{
+        align-items: center;
+        justify-content: flex-start;
     }
     .app-container{
         display: flex;

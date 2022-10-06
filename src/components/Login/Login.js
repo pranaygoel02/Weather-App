@@ -6,7 +6,8 @@ import './Login.css'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Alert from '../Alert';
 import GoogleButton from 'react-google-button'
-
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 const Login = () => {
   // const [error,setError] = useState('');
@@ -21,6 +22,7 @@ const Login = () => {
     email: '',
     password: ''
   })
+  const [showPass,setShowPass] = useState(false)
   const googleProvider = new GoogleAuthProvider()
 
   function signInWithGoogle(){
@@ -65,6 +67,11 @@ const Login = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        setAlert({
+          open: true,
+          message: `${errorMessage}`,
+          type: 'error'
+        })
       });
     }
 
@@ -91,12 +98,15 @@ const Login = () => {
         </div>
         <div className='form-element'>
           <label htmlFor='password'>Password</label>
-          <input className='form-input' onChange={handleChange} name='password' type={'password'} ref={passwordRef}></input>
+          <input className='form-input' onChange={handleChange} name='password'  type={showPass ? 'text' : 'password'} ref={passwordRef}></input>
+          {showPass ? <VisibilityIcon onClick={()=>setShowPass(prev=>!prev)}/> : <VisibilityOffIcon onClick={()=>setShowPass(prev=>!prev)}/>}
         </div>
         <button className='form-btn' disabled={loading} type='submit'>LOGIN</button>
       </form>
+      <div className='hideOnPhone'>
       <p>OR</p>
       <GoogleButton style={{'width': '100%','outline': 'none'}} onClick={signInWithGoogle}/>
+      </div>
       </div>
       <p>Don't have an account? <Link to={"/signup"}>Sign Up</Link> here.</p>
     </div>

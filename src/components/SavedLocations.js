@@ -9,7 +9,7 @@ import {useSidebar} from '../Context/SidebarContext'
 function SavedLocations() {
   const [savedlocations,setSavedlocations] = useState([])
   const {currentUser} = useAuth()
-  const {savedLocations} = useDatabase()
+  const {savedLocations,setSavedLocations} = useDatabase()
   const {hideSidebar} = useSidebar()
   const [fetched,setFetched] = useState(false)
 
@@ -34,6 +34,7 @@ function SavedLocations() {
   useEffect(()=>{
     // setFetched(prev=>false)
     getAllSavedLocations();
+    // setSavedLocations(prev=> savedlocations)
   },[getAllSavedLocations,savedLocations])
 
   async function removeSidebar(){
@@ -41,11 +42,9 @@ function SavedLocations() {
   }
 
   return (
-    
-    <ul className='savedlocations-list' style={{display: 'flex',marginTop:'1em' ,flexDirection:'row', flexWrap: 'wrap', width:'fit-content',gap:'0.5em', maxHeight:'60vh',overflowY:'scroll'}}>
+    <ul className='savedlocations-list' style={{display: 'flex',marginTop:'1em', position:'relative' ,flexDirection:'row', flexWrap: 'wrap', width:'fit-content',gap:'0.5em', maxHeight:'60vh',overflowY:'scroll'}}>
     {savedlocations && savedlocations.map(location=><Link onClick={removeSidebar} style={{width:'fit-content',}} className='more-detail-link' to={location.url}>{location.cityName}</Link>)}
     </ul>
-    
   )
 }
 

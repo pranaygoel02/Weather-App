@@ -3,11 +3,14 @@ import React,{useRef, useState} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import { useAuth } from '../../Context/AuthContext'
 import '../Login/Login.css'
-
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 const SignUp = () => {
   const [error,setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPass,setShowPass] = useState(false)
+  const [showCPass,setShowCPass] = useState(false)
   const {signup,setAlert} = useAuth()
   const emailRef = useRef()
   const passwordRef = useRef()
@@ -18,7 +21,7 @@ const SignUp = () => {
     e.preventDefault();
     if(passwordRef.current.value !== confirmPasswordRef.current.value){
       setAlert({
-        open:true,
+        open:'true',
         message: 'Passwords do not match',
         type: 'error'
       })
@@ -29,17 +32,17 @@ const SignUp = () => {
       setLoading(true)
       await signup(emailRef.current.value,passwordRef.current.value);
       setAlert({
-        open:true,
-        message: 'Signed Up',
+        open:'true',
+        message: `Signed Up! Welcome ${emailRef.current.value}`,
         type: 'success'
       })
-      navigate("/login")
+      navigate("/")
     }
-    catch{
+    catch(err){
       setError('Failed to create Account')
       setAlert({
-        open: true,
-        message: 'Falied to create Account',
+        open: 'true',
+        message: `Account with ${emailRef.current.value} already exists.`,
         type: 'info'
       })
     }
@@ -67,13 +70,19 @@ const SignUp = () => {
           <input className='form-input' name='email' type={'email'} ref={emailRef}></input>
         </div>
         <div className='form-element'>
-          <label className='form-label' htmlFor='password'>Password</label>
-          <input className='form-input' name='password' type={'password'} ref={passwordRef}></input>
+          <label htmlFor='password'>Password</label>
+          <input className='form-input' name='password'  type={showPass ? 'text' : 'password'} ref={passwordRef}></input>
+          {showPass ? <VisibilityIcon onClick={()=>setShowPass(prev=>!prev)}/> : <VisibilityOffIcon onClick={()=>setShowPass(prev=>!prev)}/>}
         </div>
         <div className='form-element'>
+          <label htmlFor='confirm-password'>Confirm Password</label>
+          <input className='form-input' name='confirm-password'  type={showCPass ? 'text' : 'password'} ref={confirmPasswordRef}></input>
+          {showCPass ? <VisibilityIcon onClick={()=>setShowCPass(prev=>!prev)}/> : <VisibilityOffIcon onClick={()=>setShowCPass(prev=>!prev)}/>}
+        </div>
+        {/* <div className='form-element'>
           <label className='form-label' htmlFor='confirm-password'>Confirm Password</label>
           <input className='form-input' name='confirm-password' type={'password'} ref={confirmPasswordRef}></input>
-        </div>
+        </div> */}
         <button className='form-btn' disabled={loading} type='submit'>SIGN UP</button>
       </form>
       </div>

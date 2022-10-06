@@ -14,7 +14,7 @@ const Homescreen = () => {
 		<div className='app-container'>
 			<Sidebar/>
 			<Dashboard/>
-			{/* {allowed ? <CurrentWeather/> : <Allow/>} */}
+			{allowed ? <CurrentWeather/> : <Allow/>}
 		</div>
 			
 		</>
