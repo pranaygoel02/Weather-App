@@ -96,7 +96,7 @@ useEffect(()=>{
       <div>
         <div className='flex-row condition-head'>
           <h2>Today's Overview</h2>
-          <Link className='flex-row condition-head more-detail-link' to={"more-details"}>More Details<OpenInNewOutlinedIcon/></Link>
+          {/* <Link className='flex-row condition-head more-detail-link' to={"more-details"}>More Details<OpenInNewOutlinedIcon/></Link> */}
         </div>
         <ul className='weather-detail-list flex-row'>
           <li>

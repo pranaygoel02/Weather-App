@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export default function UserSearch(value){
     const [cities,setCities] = useState([])    
-    const apikey = 'xErnIMP3GoEWY79vsV0Q0e0fuvhRDiun';
+    const apikey = 'bc16Up2TNEaTr1mKHCBLacLRQnLzGHEn';
     const url = `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${apikey}&q=${value}`
     useEffect(()=>{
         setCities([])
