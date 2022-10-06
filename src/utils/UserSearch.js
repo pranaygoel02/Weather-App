@@ -3,8 +3,8 @@ import axios from 'axios'
 
 export default function UserSearch(value){
     const [cities,setCities] = useState([])    
-    const apikey = 'bc16Up2TNEaTr1mKHCBLacLRQnLzGHEn';
-    const url = `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${apikey}&q=${value}`
+    const apikey = 'UgFnRFLEqTAdfjCKuzriZgCAkiijEijN';
+    const url = `https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${apikey}&q=${value}`
     useEffect(()=>{
         setCities([])
         fetch(url).then(res=>res.json()).then(data => {

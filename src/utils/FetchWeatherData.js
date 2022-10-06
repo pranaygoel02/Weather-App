@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apikey = 'bc16Up2TNEaTr1mKHCBLacLRQnLzGHEn';
-const url = 'http://dataservice.accuweather.com/locations/v1/cities/search'
+const url = 'https://dataservice.accuweather.com/locations/v1/cities/search'
 
 const getData = async () => {
     const response = await axios.get(``)

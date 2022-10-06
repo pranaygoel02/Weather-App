@@ -11,6 +11,14 @@ const SearchResults = ({cities,value,show}) => {
     if(cities.length >= 0 && show) {searchlistRef.current.classList.add('showSearchList');}
   },[cities])
 
+  useEffect(()=>{
+    document.addEventListener('click',handleClickOutside,true)
+  })
+const handleClickOutside = (e) => {
+  if(!searchlistRef.current.contains(e.target)){
+    hideResults()
+  }
+}
   const hideResults = () => {
     searchlistRef.current.classList.remove('showSearchList');
   }
@@ -21,7 +29,7 @@ const SearchResults = ({cities,value,show}) => {
             return(
                 <li className='search-item' onClick={hideResults}><Link id='search-link' to = {`/${city.key}/${city.name}/${city.state}/${city.country}`}>{city.name}, {city.state}, {city.country}</Link></li>
             )
-        }): <p>No results found.</p>}
+        }): <p style={{color:'black'}}>No results found</p>}
     </ul>
   )
 }

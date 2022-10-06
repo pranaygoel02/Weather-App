@@ -14,7 +14,7 @@ export default function CurrentConditions(){
     setUrl(prev=>`/${id}/${city}/${state}/${country}`)
     // console.log('current loccation Key: ',locationKey);
     const apikey = 'bc16Up2TNEaTr1mKHCBLacLRQnLzGHEn';
-    const url = `http://dataservice.accuweather.com/currentconditions/v1/${id}?details=true&apikey=${apikey}`
+    const url = `https://dataservice.accuweather.com/currentconditions/v1/${id}?details=true&apikey=${apikey}`
     
     useEffect(()=>{
         const getWeatherData = async () =>{
