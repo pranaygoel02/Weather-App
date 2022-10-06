@@ -43,7 +43,7 @@ function SavedLocations() {
 
   return (
     <ul className='savedlocations-list' style={{display: 'flex',marginTop:'1em', position:'relative' ,flexDirection:'row', flexWrap: 'wrap', width:'fit-content',gap:'0.5em', maxHeight:'60vh',overflowY:'scroll'}}>
-    {savedlocations && savedlocations.map(location=><Link key={location.cityId} onClick={removeSidebar} style={{width:'fit-content',}} className='more-detail-link' to={location.url}>{location.cityName}</Link>)}
+    {savedlocations.length > 0 ? savedlocations.map(location=><Link key={location.cityId} onClick={removeSidebar} style={{width:'fit-content',}} className='more-detail-link' to={location.url}>{location.cityName}</Link>) : <p style={{padding:'0.5em 0.2em',fontSize:'0.9em',borderTop:'0.5px solid gray', opacity:0.8}}>No saved locations yet.</p>}
     </ul>
   )
 }

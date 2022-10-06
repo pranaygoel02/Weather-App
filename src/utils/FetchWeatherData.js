@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apikey = 'bc16Up2TNEaTr1mKHCBLacLRQnLzGHEn';
+const apikey = 'UgFnRFLEqTAdfjCKuzriZgCAkiijEijN';
 const url = 'https://dataservice.accuweather.com/locations/v1/cities/search'
 
 const getData = async () => {

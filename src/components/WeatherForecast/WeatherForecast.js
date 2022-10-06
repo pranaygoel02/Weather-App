@@ -38,7 +38,7 @@ useEffect(()=>{
   }}
 /> of any place at a go.</h1>
       {(!currentUser && !opened) && 
-      <div className='modal' style={{position:'relative',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',textAlign:'center',gap:'0.5em',background:'white', padding:'2em 1.5em',color:'black',borderRadius:'1.5em',position:'fixed',bottom:16,zIndex:2,margin:'1em'}}>
+      <div className='modal' style={{position:'relative',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',textAlign:'center',gap:'0.5em',background:'white', padding:'2em 1.5em',color:'black',borderRadius:'1.5em',position:'fixed',bottom:16,zIndex:1,margin:'1em'}}>
         <h2>Hello!</h2>
         <p>You can now save locations to look at its weather conditions instantly!</p>
         <h3>Sign up/Login to avail the functionality!</h3>

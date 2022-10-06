@@ -42,7 +42,7 @@ const SignUp = () => {
       setError('Failed to create Account')
       setAlert({
         open: 'true',
-        message: `Account with ${emailRef.current.value} already exists.`,
+        message: `Something went wrong. Please try again.`,
         type: 'info'
       })
     }
