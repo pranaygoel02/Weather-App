@@ -17,7 +17,7 @@
 }
 html{
     height: auto;
-    overflow: auto;
+    overflow: scroll;
     background-image: url('./images/pexels-pixabay-417122.jpg');
 background-size: cover;
 background-repeat: no-repeat;

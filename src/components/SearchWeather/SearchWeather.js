@@ -26,24 +26,24 @@ export default function SearchWeather ({weatherData,city,state,country}) {
   const flagUrl = "https://countryflagsapi.com/svg/" + country.toLowerCase().split(' ').join('%20');
 
   const AddLocation = async () => {
-    console.log('adding');
+    // console.log('adding');
     try{
       addLocation();
     }
     catch(err){
-      console.log(err);
+      // console.log(err);
     }
     setSaved(prev=>true)
     setSavedLocations(prev=>!prev)
   }
 
   const RemoveLocation = async () => {
-    console.log('removing');
+    // console.log('removing');
     try{
       removeLocation();
     }
     catch(err){
-      console.log(err);
+      // console.log(err);
     }
     setSaved(prev=>false)
     setSavedLocations(prev=>!prev)
@@ -56,13 +56,13 @@ export default function SearchWeather ({weatherData,city,state,country}) {
     const docSnap = await getDoc(docRef);
     
     if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
+      // console.log("Document data:", docSnap.data());
       setSaved(prev=>true)
       // setSavedLocations(docSnap.data())
     } else {
       // doc.data() will be undefined in this case
       setSaved(prev=>false)
-      console.log("No such document!");
+      // console.log("No such document!");
     }
 },[city])
   

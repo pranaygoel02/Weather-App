@@ -12,7 +12,7 @@ export default function CurrentConditions(){
     setLocationKey(prev=>id)
     setLocationName(prev=>city)
     setUrl(prev=>`/${id}/${city}/${state}/${country}`)
-    console.log('current loccation Key: ',locationKey);
+    // console.log('current loccation Key: ',locationKey);
     const apikey = 'bc16Up2TNEaTr1mKHCBLacLRQnLzGHEn';
     const url = `http://dataservice.accuweather.com/currentconditions/v1/${id}?details=true&apikey=${apikey}`
     
@@ -21,8 +21,8 @@ export default function CurrentConditions(){
             
         axios.get(url).then(res=>res.data).then(data => {
             setWeatherData(data[0])
-            console.log(weatherData);
-            console.log('data[0]',data[0]);
+            // console.log(weatherData);
+            // console.log('data[0]',data[0]);
         })
     }
     getWeatherData()

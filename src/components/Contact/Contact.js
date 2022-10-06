@@ -23,19 +23,19 @@ export default function Contact() {
     });
 
     function handleName(e){
-        console.log(e.target.value);
+        // console.log(e.target.value);
         setName(e.target.value);
     }
     function handleEmail(e){
-        console.log(e.target.value);
+        // console.log(e.target.value);
         setEmail(e.target.value);
     }
     function handleSub(e){
-        console.log(e.target.value);
+        // console.log(e.target.value);
         setSub(e.target.value);
     }
     function handleMsg(e){
-        console.log(e.target.value);
+        // console.log(e.target.value);
         setMsg(e.target.value);
     }
     
@@ -60,7 +60,7 @@ export default function Contact() {
                 },2000);
         })
         .catch(error => {
-            console.log("Error. Can't send mail.");
+            // console.log("Error. Can't send mail.");
         })
         e.preventDefault();
     }

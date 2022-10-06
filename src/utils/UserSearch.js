@@ -8,10 +8,10 @@ export default function UserSearch(value){
     useEffect(()=>{
         setCities([])
         fetch(url).then(res=>res.json()).then(data => {
-            data.map(city=>{
+            data?.map(city=>{
                 setCities(prev =>[...prev,{key: city.Key, name: city.LocalizedName, state: city.AdministrativeArea.LocalizedName, country: city.Country.LocalizedName}])
             })
-            console.log(data);
+            // console.log(data);
         })
     },[value])
     return {cities}

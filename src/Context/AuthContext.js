@@ -25,7 +25,7 @@ export function AuthProvider ({children}){
 
     async function logout () {
         await auth.signOut()
-        console.log('logged out');
+        // console.log('logged out');
 
     }
 
@@ -37,7 +37,7 @@ export function AuthProvider ({children}){
         try{
             await createUserWithEmailAndPassword(auth,email,password).then(res=>res.user).then(data=>{
                 // setCurrentUser(data)
-                console.log(data)
+                // console.log(data)
             })
             // console.log(currentUser);
 
@@ -47,15 +47,15 @@ export function AuthProvider ({children}){
         }
     }
     async function login({email,password}){
-        console.log('email: ',email,' pass: ',password);
+        // console.log('email: ',email,' pass: ',password);
         try{
             await signInWithEmailAndPassword(auth,email,password).then(res=>res.user).then(data=>{
-                console.log('logging in');
+                // console.log('logging in');
                 // console.log(data)
                 // SetUser(data);
                 setCurrentUser(data)
             })
-            console.log('currentUser: ',currentUser);
+            // console.log('currentUser: ',currentUser);
 
         }
         catch(error){

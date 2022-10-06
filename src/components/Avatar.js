@@ -30,7 +30,7 @@ export default function AccountMenu() {
 
   async function handleLogout(){
     try{
-        console.log('logging out');
+        // console.log('logging out');
       await logout();
       setPhotoUrl(prev=>'')
       setUid(prev=>null)
@@ -40,7 +40,7 @@ export default function AccountMenu() {
     }
     
   }
-  console.log('photo: ',currentUser);
+  // console.log('photo: ',currentUser);
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>

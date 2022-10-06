@@ -11,19 +11,19 @@ export function GeolocationProvider({children}){
 
     const apikey = 'X98EcF7UujbdW84G0WkmhQJ4FANx2sTh'
     const url1 =`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${apikey}&details=true&q=${coords.lat},${coords.lon}`
-    console.log('url',url1);
+    // console.log('url',url1);
     const url2 = `http://dataservice.accuweather.com/currentconditions/v1/`
     const query = `?details=true&apikey=${apikey}`
 
     async function getUserLocation(){
-        console.log('getting user location');
+        // console.log('getting user location');
         await axios.get(url1).then(res=>res.data).then(data=>{
-            console.log(data);
+            // console.log(data);
             setUserPos(prev=>data)})
     }
     
     function Geolocate(){
-        console.log('geolocationg');
+        // console.log('geolocationg');
         if('geolocation' in navigator){
             navigator.geolocation.getCurrentPosition(position => 
                 setCoords({
@@ -33,17 +33,17 @@ export function GeolocationProvider({children}){
             )    
         }
         else{
-            console.log('not available');
+            // console.log('not available');
         }
         setAllowed(true)
     }
-    console.log('coords: ',coords);
+    // console.log('coords: ',coords);
     
     async function getUserWeather(){
         await axios.get(`${url2}${userPos.Key}${query}`).then(res=>res.data).then(data => {
                 setUserWeatherData(data[0])
-                console.log(weatherData);
-                console.log('data[0]',data[0]);
+                // console.log(weatherData);
+                // console.log('data[0]',data[0]);
             })
     }
 

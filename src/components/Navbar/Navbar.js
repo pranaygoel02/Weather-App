@@ -20,16 +20,16 @@ const Navbar = () => {
   
   const SetQuery = (e) => {
     setQuery(e.target.value);
-    console.log('query: ',query);
+    // console.log('query: ',query);
   }
   const SetSearchValue = () => {
     setValue(query);
     setShow(true);
-    console.log('value: ',value);
+    // console.log('value: ',value);
   }
   
   const {cities} = UserSearch(value);
-    console.log(cities);
+    // console.log(cities);
     // setSearches(cities);
     // setShow(false);
   

@@ -6,12 +6,12 @@ export function SidebarProvider({children}){
     const [sidebarState,setSidebarState] = useState(false)
     
     function openSidebar(){
-        console.log('opending sidebar');
+        // console.log('opending sidebar');
         setSidebarState(prev=>true)
     }
     
     function hideSidebar(){
-        console.log('closing sidebar');
+        // console.log('closing sidebar');
         setSidebarState(prev=>false)
     }
     const value = {

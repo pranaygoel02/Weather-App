@@ -20,12 +20,12 @@ function SavedLocations() {
     const querySnapshot = await getDocs(collection(db, `${currentUser.uid}`));
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
+      // console.log(doc.id, " => ", doc.data());
       setSavedlocations(prev=>[...new Set([...prev,doc.data()])])
     })
     setFetched(prev=>true);
   }catch(err){
-    console.log(err);
+    // console.log(err);
     // setFetched(prev=>false);
   } 
 // }
@@ -43,7 +43,7 @@ function SavedLocations() {
 
   return (
     <ul className='savedlocations-list' style={{display: 'flex',marginTop:'1em', position:'relative' ,flexDirection:'row', flexWrap: 'wrap', width:'fit-content',gap:'0.5em', maxHeight:'60vh',overflowY:'scroll'}}>
-    {savedlocations && savedlocations.map(location=><Link onClick={removeSidebar} style={{width:'fit-content',}} className='more-detail-link' to={location.url}>{location.cityName}</Link>)}
+    {savedlocations && savedlocations.map(location=><Link key={location.cityId} onClick={removeSidebar} style={{width:'fit-content',}} className='more-detail-link' to={location.url}>{location.cityName}</Link>)}
     </ul>
   )
 }

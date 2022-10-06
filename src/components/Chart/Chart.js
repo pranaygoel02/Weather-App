@@ -21,10 +21,10 @@ import {
 
 export default function Chart({values}) {
     const datas = Object.entries(values)
-    console.log(datas);
+    // console.log(datas);
     const labels = datas.map(data=>data[0])
     const vals = datas.map(data=>data[1].Metric.Value)
-    console.table(vals);
+    // console.table(vals);
 
     const options = {
         indexAxis: 'y',

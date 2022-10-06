@@ -10,13 +10,13 @@ export function DatabaseProvider({children}){
     const [locationKey,setLocationKey] = useState()
     const [locationName,setLocationName] = useState()
     const [url, setUrl] = useState('')
-    console.log(locationKey,locationName,url);
+    // console.log(locationKey,locationName,url);
     const [savedLocations,setSavedLocations] = useState([])
    
     async function addLocation (){
-        console.log('adding');
+        // console.log('adding');
         try {
-            console.log('saved locs: ', savedLocations);
+            // console.log('saved locs: ', savedLocations);
             const docRef = await setDoc(doc(db, `${currentUser.uid}`,locationName), {
                 cityName: locationName,
               cityId: locationKey,

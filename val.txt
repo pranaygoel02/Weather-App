@@ -27,8 +27,7 @@ const SearchWeather = () => {
   //     })
   // },[id])
   
-  console.log('weatherData: ',weatherData);
-  console.log('weatherData: ',weatherData.CloudCover);
+  
   return (
     <div className='search-weather'>
       <div className='weather-detail-head flex-row'>

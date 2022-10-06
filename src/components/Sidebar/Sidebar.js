@@ -26,7 +26,7 @@ const Sidebar = () => {
   const { currentUser, logout, setAlert } = useAuth()
   const {openSidebar,hideSidebar,sidebarState} = useSidebar()
   const { setSavedLocations,savedLocations,getAllSavedLocations} = useDatabase()
-  console.log('currentUser: ',currentUser);
+  // console.log('currentUser: ',currentUser);
 
   async function removeSidebar(){
     await hideSidebar();
@@ -49,7 +49,7 @@ const Sidebar = () => {
             <div className='nav-links padding'>
               {navLinks.links.map(link =>{
                 return(
-                <div className='nav-link'>
+                <div key={link.id} className='nav-link'>
                   {link.title === 'Weather' ? <NightsStayIcon/>:
                   <NewspaperIcon/>}
                   <Link onClick={removeSidebar} className='link' to={"/"+link.route}>{link.title}</Link>

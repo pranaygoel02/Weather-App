@@ -53,13 +53,13 @@ const Login = () => {
       .then((userCredential) => {
 
         const user = userCredential.user;
-        console.log(user);
+        // console.log(user);
         setAlert({
           open: true,
           message: `Welcome ${user.email}`,
           type: 'success'
         })
-        console.log('ID: ',user.uid);
+        // console.log('ID: ',user.uid);
         setUid(prev=>user.uid)
         navigate(-1)
 
