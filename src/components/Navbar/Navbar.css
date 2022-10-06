@@ -28,7 +28,7 @@
 }
 .nav-top{
     justify-content: space-between;
-    gap: 0.7em;
+    gap: 0.5em;
     align-items: center;
     transition: all 1s ease;
     width: 100%;

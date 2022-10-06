@@ -4,10 +4,10 @@
     align-items: center;
     width: 100%;
     justify-content: center;
-    height: 90vh;
+    height: 100vh;
     overflow: hidden;
     margin: auto;
-    margin-top: -5em;
+    margin-top: -10em;
 }
 
 #title{
@@ -23,7 +23,7 @@
 @media only screen and (min-width:768px){
     .weather{
         display: flex;
-        margin-top: 5em;
+        margin-top: 1em;
     }
     #title{
         padding: 0;
