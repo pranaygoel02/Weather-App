@@ -44,7 +44,7 @@ const Sidebar = () => {
           <div className='navigation'>
             <div id='brand' className='flex-row padding'>
               <img id='brand-icon'/>
-              <h1 id='brand-label'>Currently.in</h1>
+              <h1 id='brand-label'>°Currently.in</h1>
             </div>
             <div className='nav-links padding'>
               {navLinks.links.map(link =>{
